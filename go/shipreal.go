@@ -37,7 +37,7 @@ const (
 	// every response carries a Deprecation header, false today.
 	APIVersion = "v1"
 	// Version of this client, sent in the User-Agent.
-	Version = "1.0.0"
+	Version = "1.0.1"
 
 	// MaxBatch is the server's ceiling on requests in one batch call.
 	MaxBatch = 20
