@@ -89,6 +89,19 @@ takes money or creates an account. An agent helping someone enrol should hand
 them the link and let them complete it themselves. That is a deliberate limit,
 not a gap waiting to be filled.
 
+## Other languages
+
+The same client, same surface, in this repository:
+
+| | | |
+| --- | --- | --- |
+| JavaScript | `npm install shipreal` | [`src/`](src) |
+| Python | `pip install shipreal` | [`python/`](python) |
+| Go | `go get github.com/mluggy/shipreal-dev/go` | [`go/`](go) |
+
+Each is standalone and dependency-free. The Go module is a submodule, so its
+tags carry the directory prefix: `go/v1.0.0`.
+
 ## Other surfaces
 
 The same three capabilities are also available without this package:
@@ -97,6 +110,7 @@ The same three capabilities are also available without this package:
 | --- | --- |
 | REST | [`/api/v1`](https://shipreal.dev/api/v1), [OpenAPI 3.1](https://shipreal.dev/openapi.json) |
 | MCP | [`/mcp`](https://shipreal.dev/.well-known/mcp) — `search_curriculum`, `get_module`, `get_pricing` |
+| MCP | [`/mcp/product`](https://shipreal.dev/mcp/product) — `quote_order`, `create_enrollment_link`, `check_enrollment_channel` |
 | Natural language | [`/ask`](https://shipreal.dev/ask) (NLWeb, JSON or SSE) |
 | Markdown | every page has a twin: `Accept: text/markdown`, or `?mode=agent` |
 | Bulk | [modules.jsonl](https://shipreal.dev/feeds/modules.jsonl) |
