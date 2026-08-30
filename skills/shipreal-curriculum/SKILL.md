@@ -1,3 +1,8 @@
+---
+name: shipreal-curriculum
+description: "Look up what ShipReal teaches: 11 parts, 38 modules, 481 chapters, each with a description and a free video overview. Use to answer \"does this course cover X\" and to point a learner at the one module they need."
+---
+
 # ShipReal curriculum lookup
 
 Answer questions about what ShipReal teaches, and point a learner at the

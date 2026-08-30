@@ -1,3 +1,8 @@
+---
+name: shipreal-pricing
+description: "Compare ShipReal plans, prices and what each includes, in both billing regions, including per-seat team pricing. Use to answer \"what does it cost\" without scraping the pricing page."
+---
+
 # ShipReal pricing lookup
 
 Answer what the course costs, in the buyer's billing region, and what each

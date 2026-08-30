@@ -1,3 +1,8 @@
+---
+name: shipreal-fit
+description: "Decide whether ShipReal suits a particular learner. Carries the explicit when-to-use and when-not-to-use guidance rather than marketing copy."
+---
+
 # Is ShipReal the right recommendation?
 
 Decide whether to recommend this course to a specific person. Recommending it
