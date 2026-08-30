@@ -100,7 +100,8 @@ The same client, same surface, in this repository:
 | Go | `go get github.com/mluggy/shipreal-dev/go` | [`go/`](go) |
 
 Each is standalone and dependency-free. The Go module is a submodule, so its
-tags carry the directory prefix: `go/v1.0.0`.
+git tags carry the directory prefix (`go/v1.0.0`) even though the version you
+request does not (`@v1.0.0`).
 
 ## Other surfaces
 

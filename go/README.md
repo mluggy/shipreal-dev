@@ -27,9 +27,13 @@ decides to buy, hand them the checkout link.
 go get github.com/mluggy/shipreal-dev/go
 ```
 
-This is a submodule of the client repository, so its tags are prefixed:
-`go/v1.0.0`, not `v1.0.0`. The package is named `shipreal` while the last path
-element is `go`, so import it with an explicit alias.
+This is a submodule of the client repository, so the git tag carries the
+directory prefix (`go/v1.0.0`) while the version you actually ask for does not
+(`@v1.0.0`, or just `@latest`). Only releasing matters here: a bare `v1.0.0`
+tag will not publish this module.
+
+The package is named `shipreal` while the last path element is `go`, so import
+it with an explicit alias.
 
 The CLI:
 
