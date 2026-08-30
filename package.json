@@ -1,0 +1,55 @@
+{
+  "name": "shipreal",
+  "version": "1.0.0",
+  "description": "SDK and CLI for the public ShipReal course API: search the curriculum, read a module, read pricing. No authentication.",
+  "keywords": [
+    "shipreal",
+    "sdk",
+    "cli",
+    "api-client",
+    "mcp",
+    "agent",
+    "course",
+    "curriculum"
+  ],
+  "homepage": "https://shipreal.dev/developers",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mluggy/shipreal-dev.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mluggy/shipreal-dev/issues"
+  },
+  "license": "MIT",
+  "author": "Michael Lugassy <michael@shipreal.dev> (https://shipreal.dev)",
+  "type": "module",
+  "main": "./src/index.js",
+  "types": "./src/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./src/index.d.ts",
+      "default": "./src/index.js"
+    }
+  },
+  "bin": {
+    "shipreal": "./src/cli.js"
+  },
+  "files": [
+    "src",
+    "skills",
+    "AGENTS.md",
+    "plugin.json",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "test": "node --test test/*.test.mjs"
+  },
+  "dependencies": {},
+  "publishConfig": {
+    "access": "public"
+  }
+}
