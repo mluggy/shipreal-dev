@@ -1,6 +1,6 @@
 {
   "name": "shipreal",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "SDK and CLI for the public ShipReal course API: search the curriculum, read a module, read pricing. No authentication.",
   "keywords": [
     "shipreal",
