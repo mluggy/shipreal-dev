@@ -1,0 +1,44 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "shipreal"
+version = "1.0.0"
+description = "SDK and CLI for the public ShipReal course API: search the curriculum, read a module, read pricing. No authentication."
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [{ name = "Michael Lugassy", email = "michael@shipreal.dev" }]
+keywords = ["shipreal", "sdk", "cli", "api-client", "mcp", "agent", "course", "curriculum"]
+classifiers = [
+  "Development Status :: 5 - Production/Stable",
+  "Intended Audience :: Developers",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Topic :: Software Development :: Libraries :: Python Modules",
+  "Typing :: Typed",
+]
+# No runtime dependencies, on purpose. The whole client is stdlib urllib, so
+# installing it cannot drag a transitive tree into an agent's environment.
+dependencies = []
+
+# These two are how a scanner confirms the package is the official SDK for the
+# domain rather than a third party with a similar name. Keep them pointing at
+# shipreal.dev and at the source repo.
+[project.urls]
+Homepage = "https://shipreal.dev/developers"
+Documentation = "https://shipreal.dev/developers"
+Repository = "https://github.com/mluggy/shipreal-dev"
+Issues = "https://github.com/mluggy/shipreal-dev/issues"
+
+[project.scripts]
+shipreal = "shipreal.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/shipreal"]
