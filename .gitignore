@@ -1,3 +1,11 @@
 node_modules/
 *.tgz
 .DS_Store
+
+# Local artifacts from running `npx skills add` inside this repo to test it.
+# The source of truth for a skill is skills/<id>/SKILL.md, a real file; a
+# consumer install writes .agents/ and symlinks over skills/, which would
+# otherwise get committed as a broken tree.
+.agents/
+.claude/
+skills-lock.json
