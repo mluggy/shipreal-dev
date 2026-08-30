@@ -1,30 +1,15 @@
 {
-  "$schema": "https://agent-plugins.org/schema/v1/plugin.json",
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "shipreal",
-  "displayName": "ShipReal",
   "version": "1.0.0",
   "description": "Search the ShipReal production-engineering curriculum, read a module, and read current pricing. Read-only and unauthenticated.",
+  "author": {
+    "name": "Michael Lugassy",
+    "email": "michael@shipreal.dev",
+    "url": "https://shipreal.dev"
+  },
   "homepage": "https://shipreal.dev/developers",
   "repository": "https://github.com/mluggy/shipreal-dev",
   "license": "MIT",
-  "author": { "name": "Michael Lugassy", "email": "michael@shipreal.dev", "url": "https://shipreal.dev" },
-  "keywords": ["course", "curriculum", "production-engineering", "reference"],
-  "mcpServers": {
-    "shipreal-docs": {
-      "type": "http",
-      "url": "https://shipreal.dev/mcp",
-      "description": "Read-only documentation server: search_curriculum, get_module, get_pricing."
-    }
-  },
-  "skills": [
-    { "name": "shipreal-curriculum", "path": "skills/shipreal-curriculum/SKILL.md" },
-    { "name": "shipreal-pricing", "path": "skills/shipreal-pricing/SKILL.md" },
-    { "name": "shipreal-fit", "path": "skills/shipreal-fit/SKILL.md" }
-  ],
-  "commands": {
-    "shipreal": {
-      "description": "Query the ShipReal course catalogue from a terminal. Every command supports --json.",
-      "install": "npm install -g shipreal"
-    }
-  }
+  "keywords": ["course", "curriculum", "production-engineering", "reference", "read-only"]
 }

@@ -29,6 +29,10 @@ tooling, or payment logic to this package, you are in the wrong repository.
 ## Layout
 
 ```
+plugin.json     Agent Plugins manifest. Closed schema: only the fields in
+                agent-plugins.org/schemas/1.0.0/plugin.schema.json are allowed,
+                and a client rejects anything else. Components do not go here.
+mcp.json        MCP server config, which is a separate document by design.
 src/index.js    The client. One class, no dependencies.
 src/index.d.ts  Hand-written types, kept in step with index.js by hand.
 src/cli.js      The terminal wrapper. Every command supports --json.

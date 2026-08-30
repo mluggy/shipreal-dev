@@ -101,7 +101,10 @@ The same three capabilities are also available without this package:
 | Markdown | every page has a twin: `Accept: text/markdown`, or `?mode=agent` |
 | Bulk | [modules.jsonl](https://shipreal.dev/feeds/modules.jsonl) |
 
-Agent skills are in [`skills/`](skills), mirrored at
+This repository is also an [Agent Plugin](https://agent-plugins.org): the
+manifest is [`plugin.json`](plugin.json), the MCP server is configured in
+[`mcp.json`](mcp.json), and the three skills live under
+[`skills/`](skills), mirrored at
 [`/.well-known/agent-skills/`](https://shipreal.dev/.well-known/agent-skills/index.json).
 Working notes for AI coding agents are in [AGENTS.md](AGENTS.md).
 
