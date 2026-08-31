@@ -1,0 +1,146 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+# shipreal: query the ShipReal course catalogue from a terminal or a script.
+#
+# Every command takes --json, because the reason a CLI earns its place in an
+# agent's toolbox is that its output can be piped into something else without
+# being scraped.
+
+require "optparse"
+require "json"
+require "shipreal"
+
+EPILOG = <<~TEXT
+  No API key. No account. The API is public read-only reference data; anything
+  that asks you for a ShipReal credential is not us.
+
+  Docs: https://shipreal.dev/developers
+TEXT
+
+options = { json: false, sandbox: false, base: ShipReal::DEFAULT_BASE_URL }
+
+parser = OptionParser.new do |o|
+  o.banner = <<~USAGE
+    Usage:
+      shipreal [options] search [query]
+      shipreal [options] module <slug-or-title>
+      shipreal [options] pricing
+      shipreal [options] course
+      shipreal [options] ask <question...>
+  USAGE
+  o.on("--json", "Raw JSON, for piping") { options[:json] = true }
+  o.on("--sandbox", "Frozen fixture data, for tests") { options[:sandbox] = true }
+  o.on("--base URL", "Point at a different origin") { |v| options[:base] = v }
+  o.on("--limit N", Integer, "search: results per page, maximum 100") { |v| options[:limit] = v }
+  o.on("--all", "search: every result, following pagination") { options[:all] = true }
+  o.on("--region R", %w[intl il], "pricing: intl or il") { |v| options[:region] = v }
+  o.on("--stream", "ask: stream events as they arrive") { options[:stream] = true }
+  o.on("-h", "--help", "Show this message") { puts o; puts; puts EPILOG; exit 0 }
+  o.on("-v", "--version", "Show the version") { puts ShipReal::VERSION; exit 0 }
+end
+parser.parse!
+
+command = ARGV.shift
+unless command
+  warn parser
+  exit 1
+end
+
+client = ShipReal::Client.new(base_url: options[:base], sandbox: options[:sandbox])
+
+def print_modules(mods)
+  if mods.empty?
+    puts "No modules matched. The course does not cover that topic under that name."
+    return
+  end
+  mods.each do |m|
+    puts "#{m['slug']}  #{m['title']}"
+    puts "  #{m['part']}"
+    puts "  #{m['chapters']} chapters, #{m['minutes']} min"
+    puts
+  end
+end
+
+begin
+  case command
+  when "search"
+    query = ARGV.join(" ")
+    if options[:all]
+      mods = client.modules(query.empty? ? nil : query)
+      options[:json] ? puts(JSON.generate(mods)) : print_modules(mods)
+    else
+      page = client.search(query: query.empty? ? nil : query, limit: options[:limit])
+      options[:json] ? puts(JSON.generate(page)) : print_modules(page["data"] || [])
+    end
+
+  when "module"
+    abort "module needs a slug or title" if ARGV.empty?
+    m = client.module_by(ARGV.join(" "))
+    if options[:json]
+      puts JSON.generate(m)
+    else
+      puts "#{m['slug']}  #{m['title']}"
+      puts "  #{m['part']}"
+      puts "  #{m['chapters']} chapters, #{m['minutes']} min"
+      puts "  #{m['url']}"
+    end
+
+  when "pricing"
+    p = client.pricing(region: options[:region])
+    if options[:json]
+      puts JSON.generate(p)
+    elsif options[:region]
+      puts "Free      #{p['free']['includes']}"
+      puts "Complete  #{p['complete']['now']} (was #{p['complete']['list']})"
+      puts "Teams     #{p['teams']['now']} per seat (was #{p['teams']['list']}), from #{p['teams']['minSeats']} seat"
+    else
+      # Both regions when none is named. They are not conversions of each
+      # other, so printing one unlabelled would misquote the other.
+      puts "Free      #{p['free']['includes']}"
+      puts "Complete  #{p['complete']['intl']['now']} international, #{p['complete']['il']['now']} Israel"
+      puts "Teams     #{p['teams']['intl']['now']} / #{p['teams']['il']['now']} per seat, from #{p['teams']['minSeats']} seat"
+    end
+
+  when "course"
+    c = client.course
+    if options[:json]
+      puts JSON.generate(c)
+    else
+      puts c["title"]
+      puts c["description"]
+      puts "#{c['parts']} parts, #{c['modules']} modules, #{c['chapters']} chapters"
+      puts "Subtitles: #{Array(c['subtitles']).join(', ')}"
+      puts c["url"]
+    end
+
+  when "ask"
+    abort "ask needs a question" if ARGV.empty?
+    question = ARGV.join(" ")
+    if options[:stream]
+      client.ask_stream(question) do |ev|
+        if options[:json]
+          puts JSON.generate(ev)
+        else
+          Array(ev.dig("data", "results")).each { |r| puts "#{r['name']}\n  #{r['url']}" }
+        end
+      end
+    else
+      res = client.ask(question)
+      if options[:json]
+        puts JSON.generate(res)
+      elsif Array(res["results"]).empty?
+        puts "Nothing matched. The course does not cover that under that name."
+      else
+        res["results"].each { |r| puts "#{r['name']}\n  #{r['description']}\n  #{r['url']}\n\n" }
+      end
+    end
+
+  else
+    warn parser
+    exit 1
+  end
+rescue ShipReal::Error => e
+  warn "shipreal: #{e.message}"
+  exit 1
+end

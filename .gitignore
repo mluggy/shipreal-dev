@@ -18,3 +18,6 @@ __pycache__/
 
 # Go build output (the binary shares its name with the module dir)
 go/shipreal
+
+# Built gems
+ruby/*.gem
