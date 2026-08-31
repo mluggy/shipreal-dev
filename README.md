@@ -97,6 +97,7 @@ The same client, same surface, in this repository:
 | --- | --- | --- |
 | JavaScript | `npm install shipreal` | [`src/`](src) |
 | Python | `pip install shipreal` | [`python/`](python) |
+| Ruby | `gem install shipreal` | [`ruby/`](ruby) |
 | Go | `go get github.com/mluggy/shipreal-dev/go` | [`go/`](go) |
 
 Each is standalone and dependency-free. The Go module is a submodule, so its
