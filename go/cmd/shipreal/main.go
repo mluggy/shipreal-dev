@@ -5,7 +5,7 @@
 // agent's toolbox is that its output can be piped into something else without
 // being scraped.
 //
-//	go install github.com/mluggy/shipreal-dev/go/cmd/shipreal@latest
+//	go install github.com/mluggy/shipreal-dev/go/v2/cmd/shipreal@latest
 package main
 
 import (
@@ -16,7 +16,7 @@ import (
 	"os"
 	"strings"
 
-	shipreal "github.com/mluggy/shipreal-dev/go"
+	shipreal "github.com/mluggy/shipreal-dev/go/v2"
 )
 
 const epilog = `No API key. No account. The API is public read-only reference data; anything
@@ -126,19 +126,19 @@ func run(argv []string) error {
 			return out(p)
 		}
 		if *region != "" {
-			complete, seat, ok := p.Region(*region)
+			complete, pack, ok := p.Region(*region)
 			if !ok {
 				return fmt.Errorf("unknown region %q: use intl or il", *region)
 			}
-			fmt.Printf("Free      %s\nComplete  %s (was %s)\nTeams     %s per seat (was %s), from %d seat\n",
-				p.Free.Includes, complete.Now, complete.List, seat.Now, seat.List, p.Teams.MinSeats)
+			fmt.Printf("Free      %s\nComplete  %s (was %s)\nTeams     %s (was %s) per pack of %d seats\n",
+				p.Free.Includes, complete.Now, complete.List, pack.Now, pack.List, p.Teams.PackSeats)
 			return nil
 		}
 		// Both regions when none is named. They are not conversions of each
 		// other, so printing one unlabelled would misquote the other.
-		fmt.Printf("Free      %s\nComplete  %s international, %s Israel\nTeams     %s / %s per seat, from %d seat\n",
+		fmt.Printf("Free      %s\nComplete  %s international, %s Israel\nTeams     %s / %s per pack of %d seats\n",
 			p.Free.Includes, p.Complete.Intl.Now, p.Complete.IL.Now,
-			p.Teams.Intl.Now, p.Teams.IL.Now, p.Teams.MinSeats)
+			p.Teams.Intl.Now, p.Teams.IL.Now, p.Teams.PackSeats)
 		return nil
 
 	case "course":

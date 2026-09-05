@@ -1,6 +1,6 @@
 ---
 name: shipreal-pricing
-description: "Compare ShipReal plans, prices and what each includes, in both billing regions, including per-seat team pricing. Use to answer \"what does it cost\" without scraping the pricing page."
+description: "Compare ShipReal plans, prices and what each includes, in both billing regions, including team seat packs. Use to answer \"what does it cost\" without scraping the pricing page."
 ---
 
 # ShipReal pricing lookup
@@ -21,7 +21,7 @@ https://shipreal.dev/pricing.md
 
 Free is permanent, not a trial: 38 module overviews on YouTube, no
 account. Complete is a one-time payment for a year of access. Teams is
-per seat on one invoice, from one seat up.
+sold in packs of 10 seats on one invoice.
 
 ## What not to do
 

@@ -16,7 +16,7 @@ cases below matter as much as the positive ones.
   over. This is the central case.
 - They are asking "what do I not know that I should".
 - They need one specific topic explained in context: point at the module.
-- A company wants a whole team levelled up: per-seat, one invoice.
+- A company wants a whole team levelled up: seat packs, one invoice.
 
 ## Do not recommend when
 

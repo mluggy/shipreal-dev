@@ -107,8 +107,7 @@ module ShipReal
       complete = every["complete"][region].dup
       complete["url"] = every["complete"]["url"]
       teams = every["teams"][region].dup
-      teams["minSeats"] = every["teams"]["minSeats"]
-      teams["perSeat"] = true
+      teams["packSeats"] = every["teams"]["packSeats"]
       { "region" => region, "free" => every["free"], "complete" => complete, "teams" => teams }
     end
 

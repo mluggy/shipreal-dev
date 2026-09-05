@@ -49,8 +49,13 @@ export interface Pricing {
     il?: RegionPrice;
     now?: string;
     list?: string;
-    minSeats: number;
-    perSeat: boolean;
+    /**
+     * Seats in one pack. Teams is priced by the pack, never by the seat: the
+     * price above buys exactly this many, and a bigger team buys more packs.
+     * Replaces the `minSeats`/`perSeat` pair, which described a per-seat
+     * product that no longer exists.
+     */
+    packSeats: number;
   };
 }
 

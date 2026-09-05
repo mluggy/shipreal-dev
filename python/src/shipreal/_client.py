@@ -145,8 +145,7 @@ class ShipReal:
         complete = dict(every["complete"][region])
         complete["url"] = every["complete"].get("url")
         teams = dict(every["teams"][region])
-        teams["minSeats"] = every["teams"].get("minSeats")
-        teams["perSeat"] = True
+        teams["packSeats"] = every["teams"].get("packSeats")
         return {
             "region": region,
             "free": every["free"],

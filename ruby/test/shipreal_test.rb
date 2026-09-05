@@ -128,13 +128,13 @@ class ShipRealTest < Minitest::Test
     body = {
       "free" => { "price" => 0, "includes" => "overviews" },
       "complete" => { "intl" => { "now" => "$99" }, "il" => { "now" => "₪299" }, "url" => "u" },
-      "teams" => { "intl" => { "now" => "$119" }, "il" => { "now" => "₪359" }, "minSeats" => 1 }
+      "teams" => { "intl" => { "now" => "$792" }, "il" => { "now" => "₪2,392" }, "packSeats" => 10 }
     }
     serving(->(_req) { json_ok(body) }) do |client|
       il = client.pricing(region: "il")
       assert_equal "il", il["region"]
       assert_equal "₪299", il["complete"]["now"]
-      assert_equal 1, il["teams"]["minSeats"]
+      assert_equal 10, il["teams"]["packSeats"]
       # No region named returns both, unflattened, rather than guessing one.
       both = client.pricing
       assert both["complete"].key?("intl")

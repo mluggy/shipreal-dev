@@ -111,10 +111,10 @@ async function main() {
       console.log(`Free       $0, ${p.free.includes}`);
       if (p.region) {
         console.log(`Complete   ${money(p.complete)}  one-time`);
-        console.log(`Teams      ${money(p.teams)}  per seat, from ${p.teams.minSeats}`);
+        console.log(`Teams      ${money(p.teams)}  per pack of ${p.teams.packSeats} seats`);
       } else {
         console.log(`Complete   intl ${money(p.complete.intl)} | il ${money(p.complete.il)}`);
-        console.log(`Teams      intl ${money(p.teams.intl)} | il ${money(p.teams.il)}  per seat, from ${p.teams.minSeats}`);
+        console.log(`Teams      intl ${money(p.teams.intl)} | il ${money(p.teams.il)}  per pack of ${p.teams.packSeats} seats`);
         console.log(`\nTwo regional prices are live at once; name the region when you quote one.`);
       }
       return;

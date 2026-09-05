@@ -24,7 +24,7 @@ decides to buy, hand them the checkout link.
 ## Install
 
 ```
-go get github.com/mluggy/shipreal-dev/go
+go get github.com/mluggy/shipreal-dev/go/v2
 ```
 
 This is a submodule of the client repository, so the git tag carries the
@@ -38,7 +38,7 @@ it with an explicit alias.
 The CLI:
 
 ```
-go install github.com/mluggy/shipreal-dev/go/cmd/shipreal@latest
+go install github.com/mluggy/shipreal-dev/go/v2/cmd/shipreal@latest
 ```
 
 ## Library
@@ -50,7 +50,7 @@ import (
 	"context"
 	"fmt"
 
-	shipreal "github.com/mluggy/shipreal-dev/go"
+	shipreal "github.com/mluggy/shipreal-dev/go/v2"
 )
 
 func main() {
@@ -72,8 +72,8 @@ func main() {
 
 	// What does it cost, in a named region?
 	prices, _ := c.Pricing(ctx)
-	complete, perSeat, ok := prices.Region("il")
-	fmt.Println(complete.Now, perSeat.Now, ok)
+	complete, teamPack, ok := prices.Region("il")
+	fmt.Println(complete.Now, teamPack.Now, ok)
 }
 ```
 

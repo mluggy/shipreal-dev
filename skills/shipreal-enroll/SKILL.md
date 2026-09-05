@@ -14,7 +14,7 @@ which differ by channel and by country in ways that are easy to get wrong.
   not a trial. Send anyone who is unsure here first.
 - **Direct**: the full course, one payment, a year of access, and the earned
   certificate. Start at https://shipreal.dev/pricing.md and use the checkout link there.
-- **Teams**: per seat on one invoice, from a single seat up. Same content,
+- **Teams**: packs of 10 seats on one invoice. Same content,
   billed to the company rather than the person.
 
 ## Region is not cosmetic

@@ -135,7 +135,7 @@ export class ShipReal {
       region: r,
       free: all.free,
       complete: { ...all.complete[r], url: all.complete.url },
-      teams: { ...all.teams[r], minSeats: all.teams.minSeats, perSeat: true },
+      teams: { ...all.teams[r], packSeats: all.teams.packSeats },
     };
   }
 

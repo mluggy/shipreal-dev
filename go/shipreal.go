@@ -146,9 +146,10 @@ type Plan struct {
 	Intl RegionPrice `json:"intl"`
 	IL   RegionPrice `json:"il"`
 	URL  string      `json:"url,omitempty"`
-	// MinSeats and PerSeat are only meaningful on the teams plan.
-	MinSeats int  `json:"minSeats,omitempty"`
-	PerSeat  bool `json:"perSeat,omitempty"`
+	// PackSeats is only meaningful on the teams plan: the seats one pack
+	// carries. Teams is priced by the pack, never by the seat, so the price
+	// above buys exactly this many and a bigger team buys more packs.
+	PackSeats int `json:"packSeats,omitempty"`
 }
 
 // Pricing is every plan in every region. Two regional prices are live at
@@ -161,8 +162,9 @@ type Pricing struct {
 }
 
 // Region returns the prices for "intl" or "il". Any other value returns the
-// international region and false, rather than guessing.
-func (p Pricing) Region(region string) (complete, perSeat RegionPrice, ok bool) {
+// international region and false, rather than guessing. The second return is
+// the price of one team pack, not of one seat; see Plan.PackSeats.
+func (p Pricing) Region(region string) (complete, teamPack RegionPrice, ok bool) {
 	switch region {
 	case "il":
 		return p.Complete.IL, p.Teams.IL, true

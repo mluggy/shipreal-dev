@@ -168,11 +168,11 @@ func TestNonJSONErrorBodyKeepsStatus(t *testing.T) {
 func TestPricingRegionPicksDeliberately(t *testing.T) {
 	p := Pricing{
 		Complete: Plan{Intl: RegionPrice{Now: "$99"}, IL: RegionPrice{Now: "₪299"}},
-		Teams:    Plan{Intl: RegionPrice{Now: "$119"}, IL: RegionPrice{Now: "₪359"}, MinSeats: 1},
+		Teams:    Plan{Intl: RegionPrice{Now: "$792"}, IL: RegionPrice{Now: "₪2,392"}, PackSeats: 10},
 	}
-	complete, seat, ok := p.Region("il")
-	if !ok || complete.Now != "₪299" || seat.Now != "₪359" {
-		t.Fatalf("il = %v %v %v", complete, seat, ok)
+	complete, pack, ok := p.Region("il")
+	if !ok || complete.Now != "₪299" || pack.Now != "₪2,392" {
+		t.Fatalf("il = %v %v %v", complete, pack, ok)
 	}
 	// An unknown region falls back to international and says so, rather than
 	// quietly quoting a price for the wrong country.
